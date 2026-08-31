@@ -73,7 +73,8 @@
         </div>
 
         <div class="contact-form reveal" id="contactFormWrapper">
-          <form id="contactForm">
+          <!-- REPLACE action BELOW WITH YOUR GOOGLE APPS SCRIPT WEB APP URL -->
+          <form id="contactForm" action="https://script.google.com/macros/s/AKfycbwFKqASNbrq7yg-Ro4Y75SPdj0oI9HvvcsjlvLq7rA7YTQYf_k1oP8-hg6ywZDMvovx/exec" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name</label>
@@ -109,9 +110,10 @@
               <label for="message">Briefly describe your challenge or goal</label>
               <textarea id="message" name="message" placeholder="A few sentences is enough..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%;">Send Message</button>
           </form>
-          <div class="form-success" id="formSuccess">
+
+          <div class="form-success" id="formSuccess" style="display: none;">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <h3 style="margin-bottom: 0.5rem;">Message received</h3>
             <p style="color: var(--gray-500);">Thank you. We’ll be in touch shortly to schedule a discovery conversation.</p>
@@ -121,7 +123,7 @@
     </div>
   </section>
 
-   <!-- Footer -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -162,5 +164,42 @@
   </footer>
 
   <script src="js/main.js"></script>
+  
+  <!-- JavaScript for handling AJAX post to Google Apps Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      const successMessage = document.getElementById('formSuccess');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Sending...';
+
+          const formData = new FormData(form);
+
+          // Submit via fetch to Google Apps Script endpoint
+          fetch(form.action, {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => {
+            form.style.display = 'none';
+            if (successMessage) {
+              successMessage.style.display = 'block';
+            }
+          })
+          .catch(error => {
+            alert('Something went wrong. Please try sending again.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Send Message';
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
