@@ -73,7 +73,7 @@
         </div>
 
         <div class="contact-form reveal" id="contactFormWrapper">
-          <form id="contactForm" action="https://script.google.com/macros/s/AKfycbzgsa_v4NWbFUuGcsLV9tDPimO_f7uCpIuDGTKnbetxSYZ2geTF1PleUEnlOjvxe1A/exec" method="POST">
+          <form id="contactForm" action="https://script.google.com/macros/s/AKfycbxSZ9I6gxTjlck__5PZNuSvRiv6D7xnNMJlYh7U1o2RQgUAjTowxKaG55TE3_BZTLpQ/exec" method="POST">
             
             <!-- Honeypot anti-spam input (hidden from real users) -->
             <div style="display:none !important;" aria-hidden="true">
@@ -172,38 +172,39 @@
   <script src="js/main.js"></script>
   
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('contactForm');
-      const successMessage = document.getElementById('formSuccess');
-      const submitBtn = document.getElementById('submitBtn');
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('formSuccess');
+    const submitBtn = document.getElementById('submitBtn');
 
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-          submitBtn.disabled = true;
-          submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
 
-          const formData = new FormData(form);
+        const formData = new FormData(form);
 
-          fetch(form.action, {
-            method: 'POST',
-            body: formData
-          })
-          .then(response => {
-            form.style.display = 'none';
-            if (successMessage) {
-              successMessage.style.display = 'block';
-            }
-          })
-          .catch(error => {
-            alert('Something went wrong. Please try sending again.');
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Send Message';
-          });
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Bypasses browser CORS restrictions on Google redirects
+        })
+        .then(() => {
+          form.style.display = 'none';
+          if (successMessage) {
+            successMessage.style.display = 'block';
+          }
+        })
+        .catch(error => {
+          alert('Something went wrong. Please try sending again.');
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Send Message';
         });
-      }
-    });
-  </script>
+      });
+    }
+  });
+</script>
 </body>
 </html>
