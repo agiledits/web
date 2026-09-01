@@ -441,7 +441,7 @@ section {
 }
 
 .service-card {
-  background: rgb(203, 198, 198);
+  background: rgb(245, 237, 237);
   border: 1px solid var(--gray-300);
   border-radius: var(--radius);
   padding: 0;
@@ -605,16 +605,16 @@ section {
 
 /* ========== ENGAGEMENT ========== */
 .engagement {
-  background: var(--gray-500);
+  background: var(--gray-300);
   color: rgb(144, 135, 135);
 }
 
 .engagement .section-header h2 {
-  color: white;
+  color: rgb(17, 16, 16);
 }
 
 .engagement .section-header p {
-  color: #94a3b8;
+  color: #1c1c1d;
 }
 
 .engagement-grid {
@@ -636,13 +636,13 @@ section {
 }
 
 .engagement-card h4 {
-  color: white;
+  color: rgb(10, 10, 10);
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
 .engagement-card p {
-  color: #94a3b8;
+  color: #080808;
   font-size: 0.9rem;
 }
 
