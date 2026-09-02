@@ -243,7 +243,7 @@ footer .logo img {
 }
 
 .hero h1 span {
-  color: var(--primary-light);
+  color: --gray-300;
 }
 
 .hero p {
@@ -286,18 +286,18 @@ footer .logo img {
 }
 
 .btn-primary {
-  background: rgba(197, 197, 204, 0.929);
-  color: rgb(22, 5, 47);
+  background: rgba(89, 89, 252, 0.929);
+  color: rgb(222, 219, 226);
 }
 
 .btn-primary:hover {
-  background: rgba(237, 237, 242, 0.952);
+  background: rgba(77, 77, 187, 0.952);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: rgb(110, 6, 246);
-  color: rgba(122, 122, 236, 0.802);
+  background: rgb(249, 249, 250);
+  color: rgba(11, 11, 12, 0.802);
   border: 1.5px solid var(--gray-900);
 }
 
